@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, useScroll, useTransform, Variants } from "framer-motion";
+import { motion, useScroll, useTransform, Variants, AnimatePresence } from "framer-motion";
 import { Button } from "../ui/Button";
+import { useState, useEffect } from "react";
 
 export function Hero() {
   const { scrollY } = useScroll();
@@ -32,22 +33,41 @@ export function Hero() {
     }
   };
 
+  const heroImages = [
+    "/assets/royalcrest/aerial-1.png",
+    "/assets/royalcrest/club-house-(1).png",
+    "/assets/royalcrest/shopping-plaza_day.png",
+    "/assets/royalcrest/jogging-track-(2).png",
+  ];
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+    }, 6000); // Change image every 6 seconds
+    return () => clearInterval(interval);
+  }, [heroImages.length]);
+
   return (
     <section id="home" className="relative h-screen min-h-[700px] w-full overflow-hidden bg-black flex items-end pb-16 md:pb-24">
-      {/* Parallax Video Background */}
+      {/* Motion Image Slider Background */}
       <motion.div 
         style={{ y: backgroundY }}
         className="absolute inset-0 z-0 w-full h-[150%] md:h-[120%] -top-[10%] pointer-events-none"
       >
-        <div className="absolute inset-0 w-[300%] h-[300%] left-[-100%] top-[-100%] bg-black">
-          <iframe
-            src="https://www.youtube.com/embed/fZvL2I2mgWs?autoplay=1&mute=1&loop=1&playlist=fZvL2I2mgWs&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&start=15"
-            title="Royal Crest Township Background"
-            className="absolute top-1/2 left-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 opacity-70 mix-blend-screen scale-[0.8] md:scale-[1.3]"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            style={{ border: 'none' }}
-          ></iframe>
-        </div>
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={currentImageIndex}
+            src={heroImages[currentImageIndex]}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 0.6, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 2, ease: "easeInOut" }}
+            className="absolute inset-0 w-full h-full object-cover"
+            alt="Royal Crest Background"
+          />
+        </AnimatePresence>
       </motion.div>
 
       {/* Cinematic dark gradient - heavy at the bottom for text readability */}

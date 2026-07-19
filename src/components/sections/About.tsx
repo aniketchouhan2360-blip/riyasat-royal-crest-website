@@ -35,15 +35,10 @@ export function About() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-              className="absolute bottom-0 right-0 w-[80%] h-[55%] rounded-sm overflow-hidden shadow-2xl z-20 border-8 border-[#FAFAFA] bg-black"
+              className="absolute bottom-0 right-0 w-[60%] h-[60%] rounded-sm overflow-hidden shadow-2xl z-20 border-8 border-[#FAFAFA]"
             >
-              <iframe 
-                src="https://www.youtube.com/embed/fZvL2I2mgWs?controls=1&rel=0&modestbranding=1" 
-                title="Riyasat Royalcrest Video"
-                className="w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
-              ></iframe>
+              <img src="/assets/royalcrest/club-house-(1).png" alt="Royal Crest Clubhouse" className="w-full h-full object-cover" loading="lazy" />
+              <div className="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
             </motion.div>
             
             {/* Minimalist accent line */}
