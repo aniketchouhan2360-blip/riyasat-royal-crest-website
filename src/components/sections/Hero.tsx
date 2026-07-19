@@ -39,9 +39,9 @@ export function Hero() {
         style={{ y: backgroundY }}
         className="absolute inset-0 z-0 w-full h-[150%] md:h-[120%] -top-[10%] pointer-events-none"
       >
-        <div className="absolute inset-0 w-[300%] h-[300%] left-[-100%] top-[-100%]">
+        <div className="absolute inset-0 w-[300%] h-[300%] left-[-100%] top-[-100%] bg-black">
           <iframe
-            src="https://www.youtube.com/embed/fZvL2I2mgWs?autoplay=1&mute=1&loop=1&playlist=fZvL2I2mgWs&controls=0&showinfo=0&rel=0&modestbranding=1"
+            src="https://www.youtube.com/embed/fZvL2I2mgWs?autoplay=1&mute=1&loop=1&playlist=fZvL2I2mgWs&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&start=15"
             title="Royal Crest Township Background"
             className="absolute top-1/2 left-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 opacity-70 mix-blend-screen scale-[0.8] md:scale-[1.3]"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
