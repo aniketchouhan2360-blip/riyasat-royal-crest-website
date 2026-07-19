@@ -8,8 +8,8 @@ export function Hero() {
         {/* Placeholder for Hero Video/Image */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30 z-10" />
         <img 
-          src="https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?auto=format&fit=crop&q=80" 
-          alt="European Estate" 
+          src="/assets/royalcrest/aerial-view.png" 
+          alt="Royal Crest Aerial View" 
           className="w-full h-full object-cover opacity-80 mix-blend-overlay"
         />
       </div>

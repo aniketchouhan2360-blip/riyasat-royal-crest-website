@@ -5,21 +5,24 @@ import { useState } from "react";
 export function Gallery() {
   const [activeTab, setActiveTab] = useState("renders");
 
-  // Since we don't have local images yet, we will use elegant architecture placeholders
+  // Using the actual project images from the local assets folder
   const renderImages = [
-    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&q=80"
+    "/assets/royalcrest/aerial-1.png",
+    "/assets/royalcrest/aerial-2.png",
+    "/assets/royalcrest/aerial-view.png",
+    "/assets/royalcrest/shopping-plaza_day.png",
+    "/assets/royalcrest/ohsr-cwr.png",
+    "/assets/royalcrest/court.png"
   ];
 
   const amenityImages = [
-    "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1519313936932-b7e416a22668?auto=format&fit=crop&q=80",
-    "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80"
+    "/assets/royalcrest/club-house-(1).png",
+    "/assets/royalcrest/swimming-pool.png",
+    "/assets/royalcrest/jogging-track-(2).png",
+    "/assets/royalcrest/meditation-and-yoga.png",
+    "/assets/royalcrest/multipurpose-court-and-cricket-turf.png",
+    "/assets/royalcrest/open-gym-area-(1).png",
+    "/assets/royalcrest/kids-play-area.png"
   ];
 
   const displayImages = activeTab === "renders" ? renderImages : amenityImages;
