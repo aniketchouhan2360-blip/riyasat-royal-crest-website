@@ -50,95 +50,102 @@ export function Hero() {
   }, [heroImages.length]);
 
   return (
-    <section id="home" className="relative h-screen min-h-[700px] w-full overflow-hidden bg-black flex items-end pb-16 md:pb-24">
+    <section id="home" className="relative h-screen min-h-[800px] w-full overflow-hidden bg-[#0A0A0A] flex flex-col items-center justify-center pt-20">
       {/* Motion Image Slider Background */}
       <motion.div 
         style={{ y: backgroundY }}
-        className="absolute inset-0 z-0 w-full h-[150%] md:h-[120%] -top-[10%] pointer-events-none"
+        className="absolute inset-0 z-0 w-full h-[120%] -top-[10%] pointer-events-none"
       >
         <AnimatePresence mode="wait">
           <motion.img
             key={currentImageIndex}
             src={heroImages[currentImageIndex]}
-            initial={{ opacity: 0, scale: 1.1 }}
-            animate={{ opacity: 0.6, scale: 1 }}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 0.8, scale: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 2, ease: "easeInOut" }}
+            transition={{ duration: 3, ease: "easeInOut" }}
             className="absolute inset-0 w-full h-full object-cover"
             alt="Royal Crest Background"
           />
         </AnimatePresence>
       </motion.div>
 
-      {/* Cinematic dark gradient - heavy at the bottom for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10 pointer-events-none" />
-      <div className="absolute inset-0 bg-black/20 z-10 pointer-events-none" /> {/* Subtle overall dim */}
+      {/* Subtle overlay for text readability - classic vignette */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/80 z-10 pointer-events-none" />
 
-      {/* Cinematic Main Content Pushed to Bottom */}
+      {/* Centered Classic Luxury Content */}
       <motion.div 
         style={{ opacity }}
-        className="container relative z-20 mx-auto px-6 md:px-12 w-full"
+        className="container relative z-20 mx-auto px-6 text-center w-full flex flex-col items-center"
       >
         <motion.div 
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="max-w-5xl"
+          className="max-w-4xl flex flex-col items-center"
         >
-          <motion.div variants={itemVariants} className="mb-6">
-            <span className="inline-block py-1 px-3 border-l-2 border-accent text-white/90 text-xs font-semibold tracking-[0.3em] uppercase bg-black/20 backdrop-blur-sm">
+          <motion.div variants={itemVariants} className="mb-8">
+            <span className="inline-block py-2 px-6 border border-accent/40 rounded-full text-accent text-xs font-semibold tracking-[0.4em] uppercase bg-black/30 backdrop-blur-md">
               MahaRERA No: PP1270002600401
             </span>
           </motion.div>
           
           <motion.h1 
             variants={itemVariants}
-            className="text-5xl md:text-7xl lg:text-[6rem] font-serif font-medium mb-6 leading-[1.05] text-white tracking-tight drop-shadow-xl"
+            className="text-5xl md:text-7xl lg:text-[7rem] font-serif font-normal mb-6 text-white drop-shadow-2xl leading-none"
           >
-            The Pinnacle of <br />
-            <span className="italic text-white/90 font-light tracking-wide">European Luxury</span>
+            The Pinnacle of<br />
+            <span className="italic font-light text-[#E8DCC4]">European Luxury</span>
           </motion.h1>
+
+          <motion.div variants={itemVariants} className="flex items-center justify-center gap-4 w-full max-w-md my-8 opacity-80">
+            <div className="h-[1px] w-full bg-gradient-to-r from-transparent to-accent"></div>
+            <div className="w-2 h-2 rounded-full bg-accent shrink-0"></div>
+            <div className="h-[1px] w-full bg-gradient-to-l from-transparent to-accent"></div>
+          </motion.div>
           
-          <motion.div variants={itemVariants} className="flex flex-col md:flex-row md:items-end justify-between gap-8 md:gap-12 mt-8 border-t border-white/20 pt-8">
-            <p className="text-lg md:text-xl font-sans text-white/80 font-light tracking-wide leading-relaxed max-w-2xl drop-shadow-md">
-              Experience 15 acres of breathtaking architecture, unmatched serenity, and world-class amenities in Navi Mumbai. Secure your legacy today.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 shrink-0">
-              <a href="#contact">
-                <Button size="lg" className="w-full sm:w-auto px-8 py-4 bg-white text-black hover:bg-accent hover:text-white rounded-none tracking-widest uppercase text-xs transition-all duration-500">
-                  Enquire Now
-                </Button>
-              </a>
-              <a href="#about">
-                <Button variant="outline" size="lg" className="w-full sm:w-auto px-8 py-4 bg-transparent border-white text-white hover:bg-white hover:text-black rounded-none tracking-widest uppercase text-xs transition-all duration-500">
-                  Explore
-                </Button>
-              </a>
-            </div>
+          <motion.p variants={itemVariants} className="text-lg md:text-2xl font-sans text-white/90 font-light tracking-wide leading-relaxed max-w-3xl drop-shadow-md mb-12">
+            Experience 15 acres of breathtaking architecture and unmatched serenity in Navi Mumbai.
+          </motion.p>
+          
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-6">
+            <a href="#contact">
+              <Button size="lg" className="px-10 py-5 bg-accent hover:bg-accent/90 text-black border-none rounded-none tracking-[0.2em] uppercase text-sm font-semibold transition-all duration-500 shadow-[0_0_30px_rgba(202,160,82,0.3)]">
+                Enquire Now
+              </Button>
+            </a>
+            <a href="#walkthrough">
+              <Button variant="outline" size="lg" className="px-10 py-5 bg-black/20 backdrop-blur-md border border-white/40 text-white hover:bg-white hover:text-black rounded-none tracking-[0.2em] uppercase text-sm transition-all duration-500">
+                View Walkthrough
+              </Button>
+            </a>
           </motion.div>
         </motion.div>
       </motion.div>
       
-      {/* Minimalist Scroll indicator - Pushed to right side */}
+      {/* Floating Highlights Bar (Lodha / Godrej style) */}
       <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-12 right-6 md:right-12 z-20 hidden lg:flex flex-col items-center gap-4"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.5, duration: 1 }}
+        className="absolute bottom-0 left-0 w-full z-30 hidden lg:block"
       >
-        <span className="text-[10px] uppercase tracking-[0.5em] text-white/40 font-sans font-light rotate-90 origin-right translate-x-3 translate-y-8">Scroll</span>
-        <motion.div 
-          animate={{ height: ["0%", "100%", "0%"], top: ["0%", "0%", "100%"] }}
-          transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-          className="w-[1px] h-16 bg-white/30 relative overflow-hidden mt-16"
-        >
-          <motion.div 
-            animate={{ top: ["-100%", "100%"] }}
-            transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-            className="absolute left-0 w-full h-1/2 bg-white"
-          />
-        </motion.div>
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="grid grid-cols-3 bg-black/40 backdrop-blur-xl border-t border-x border-white/10 divide-x divide-white/10">
+            <div className="p-8 text-center hover:bg-white/5 transition-colors cursor-default">
+              <div className="text-3xl font-serif text-[#E8DCC4] mb-2">15 Acres</div>
+              <div className="text-xs font-sans text-white/60 uppercase tracking-[0.3em]">Total Land Parcel</div>
+            </div>
+            <div className="p-8 text-center hover:bg-white/5 transition-colors cursor-default">
+              <div className="text-3xl font-serif text-[#E8DCC4] mb-2">200+</div>
+              <div className="text-xs font-sans text-white/60 uppercase tracking-[0.3em]">Premium Plots</div>
+            </div>
+            <div className="p-8 text-center hover:bg-white/5 transition-colors cursor-default">
+              <div className="text-3xl font-serif text-[#E8DCC4] mb-2">12+</div>
+              <div className="text-xs font-sans text-white/60 uppercase tracking-[0.3em]">World-class Amenities</div>
+            </div>
+          </div>
+        </div>
       </motion.div>
     </section>
   );
