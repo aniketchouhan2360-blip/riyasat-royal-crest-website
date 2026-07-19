@@ -33,7 +33,7 @@ export function Hero() {
   };
 
   return (
-    <section id="home" className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden bg-black">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
       {/* Parallax Video Background */}
       <motion.div 
         style={{ y: backgroundY }}
@@ -43,7 +43,7 @@ export function Hero() {
           <iframe
             src="https://www.youtube.com/embed/fZvL2I2mgWs?autoplay=1&mute=1&loop=1&playlist=fZvL2I2mgWs&controls=0&showinfo=0&rel=0&modestbranding=1"
             title="Royal Crest Township Background"
-            className="absolute top-1/2 left-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 opacity-60 mix-blend-screen scale-[0.6] md:scale-100"
+            className="absolute top-1/2 left-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 opacity-60 mix-blend-screen scale-[0.8] md:scale-[1.3]"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             style={{ border: 'none' }}
           ></iframe>
@@ -55,7 +55,7 @@ export function Hero() {
       {/* Main Content with 3D Glassmorphism Panel */}
       <motion.div 
         style={{ opacity }}
-        className="container relative z-20 mx-auto px-6 text-center text-white flex flex-col items-center pt-20"
+        className="container relative z-20 mx-auto px-6 text-center text-white flex flex-col items-center pt-32 pb-32"
       >
         {/* Glowing floating ring behind text for 3D depth */}
         <motion.div 
@@ -69,7 +69,7 @@ export function Hero() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="relative z-10 max-w-4xl mx-auto backdrop-blur-sm bg-black/10 p-8 md:p-12 rounded-2xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]"
+          className="relative z-10 max-w-4xl mx-auto backdrop-blur-sm bg-black/10 p-8 md:p-12 rounded-2xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] mt-8"
         >
           <motion.div variants={itemVariants}>
             <span className="inline-block py-1.5 px-4 border border-accent/60 rounded-full text-accent text-xs font-semibold tracking-widest uppercase mb-8 bg-black/40 backdrop-blur-md shadow-[0_0_15px_rgba(202,160,82,0.3)]">
@@ -115,7 +115,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 hidden md:flex flex-col items-center"
       >
         <span className="text-[10px] uppercase tracking-[0.3em] text-white/50 mb-2 font-sans font-semibold">Discover</span>
         <motion.a 
