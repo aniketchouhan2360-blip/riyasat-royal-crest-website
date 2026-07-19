@@ -1,63 +1,99 @@
-export function About() {
-  return (
-    <section id="about" className="py-24 bg-background overflow-hidden relative">
-      {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-64 h-64 bg-secondary/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
+"use client";
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+import { motion } from "framer-motion";
+
+export function About() {
+  const textVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" }
+    }
+  };
+
+  return (
+    <section id="about" className="py-32 bg-[#FAFAFA] overflow-hidden relative">
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           
-          <div className="order-2 lg:order-1">
-            <div className="relative aspect-video rounded-sm overflow-hidden shadow-2xl border-4 border-white">
-              <iframe 
-                src="https://www.youtube.com/embed/fZvL2I2mgWs?autoplay=0&controls=1&rel=0" 
-                title="Riyasat Royalcrest Video"
-                className="w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
-              ></iframe>
-            </div>
+          {/* Editorial Image Composition */}
+          <div className="order-2 lg:order-1 relative h-[600px] w-full">
+            <motion.div 
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              className="absolute top-0 left-0 w-[70%] h-[75%] rounded-sm overflow-hidden shadow-2xl z-10"
+            >
+              <img src="/assets/royalcrest/aerial-1.png" alt="Royal Crest Aerial" className="w-full h-full object-cover" loading="lazy" />
+              <div className="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+            </motion.div>
             
-            {/* Design accents */}
-            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-accent/20 rounded-sm -z-10" />
-            <div className="absolute -top-6 -right-6 w-24 h-24 border border-primary/20 rounded-full -z-10" />
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+              className="absolute bottom-0 right-0 w-[60%] h-[60%] rounded-sm overflow-hidden shadow-2xl z-20 border-8 border-[#FAFAFA]"
+            >
+              <img src="/assets/royalcrest/club-house-(1).png" alt="Royal Crest Clubhouse" className="w-full h-full object-cover" loading="lazy" />
+              <div className="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+            </motion.div>
+            
+            {/* Minimalist accent line */}
+            <motion.div 
+              initial={{ height: 0 }}
+              whileInView={{ height: 200 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.5, delay: 0.5 }}
+              className="absolute -left-6 top-20 w-[1px] bg-accent z-0 hidden md:block"
+            />
           </div>
           
+          {/* Text Content */}
           <div className="order-1 lg:order-2">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="h-[1px] w-12 bg-primary"></div>
-              <span className="text-primary font-semibold tracking-widest uppercase text-sm">The Vision</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-serif text-text-dark mb-6">
-              Discover the Perfect Balance of Connectivity and Tranquility
-            </h2>
-            <div className="space-y-4 text-text-light font-sans text-lg">
-              <p>
-                Spread across 15 acres of prime land, surrounded by lush greenery and just minutes away from the Expressway. Located in Wavandhal, near Panvel, Riyasat Royalcrest is inspired by timeless European elegance.
-              </p>
-              <p>
-                Set in a coveted location, our township offers effortless access to the city's key landmarks, prestigious schools, healthcare centers, and entertainment hotspots like Imagica, Lonavala, and Matheran Hills. 
-              </p>
-              <p>
-                Experience the ease of living just moments away from everything you need, while also enjoying the peace and privacy of your own serene sanctuary. The entire township is thoughtfully secured with boundary walls, fencing, and 24/7 CCTV surveillance.
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 mt-10">
-              <div className="text-center p-4 bg-white shadow-sm border border-secondary/20 rounded-sm">
-                <div className="text-3xl font-serif text-primary mb-1">15</div>
-                <div className="text-xs text-text-light uppercase tracking-wider">Acres Area</div>
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={{
+                visible: { transition: { staggerChildren: 0.2 } }
+              }}
+            >
+              <motion.div variants={textVariants} className="flex items-center gap-6 mb-8">
+                <span className="text-primary font-sans tracking-[0.3em] uppercase text-xs font-semibold">The Vision</span>
+                <div className="h-[1px] w-24 bg-secondary/30"></div>
+              </motion.div>
+              
+              <motion.h2 variants={textVariants} className="text-4xl md:text-5xl lg:text-6xl font-serif text-text-dark mb-8 leading-[1.15]">
+                Discover the Perfect Balance of <span className="italic text-primary font-light">Connectivity & Tranquility</span>
+              </motion.h2>
+              
+              <div className="space-y-6 text-text-light font-sans text-lg font-light leading-relaxed mb-12">
+                <motion.p variants={textVariants}>
+                  Spread across 15 acres of prime land, surrounded by lush greenery and just minutes away from the Expressway. Located in Wavandhal, near Panvel, Riyasat Royalcrest is inspired by timeless European elegance.
+                </motion.p>
+                <motion.p variants={textVariants}>
+                  Set in a coveted location, our township offers effortless access to the city's key landmarks, prestigious schools, healthcare centers, and entertainment hotspots like Imagica, Lonavala, and Matheran Hills. 
+                </motion.p>
               </div>
-              <div className="text-center p-4 bg-white shadow-sm border border-secondary/20 rounded-sm">
-                <div className="text-3xl font-serif text-primary mb-1">200</div>
-                <div className="text-xs text-text-light uppercase tracking-wider">Residential Plots</div>
-              </div>
-              <div className="text-center p-4 bg-white shadow-sm border border-secondary/20 rounded-sm">
-                <div className="text-3xl font-serif text-primary mb-1">12+</div>
-                <div className="text-xs text-text-light uppercase tracking-wider">Amenities</div>
-              </div>
-            </div>
+              
+              <motion.div variants={textVariants} className="grid grid-cols-3 gap-8 pt-8 border-t border-secondary/20">
+                <div>
+                  <div className="text-4xl font-serif text-primary mb-2">15</div>
+                  <div className="text-[10px] text-text-light uppercase tracking-[0.2em] font-semibold">Acres Area</div>
+                </div>
+                <div>
+                  <div className="text-4xl font-serif text-primary mb-2">200</div>
+                  <div className="text-[10px] text-text-light uppercase tracking-[0.2em] font-semibold">Premium Plots</div>
+                </div>
+                <div>
+                  <div className="text-4xl font-serif text-primary mb-2">12+</div>
+                  <div className="text-[10px] text-text-light uppercase tracking-[0.2em] font-semibold">Amenities</div>
+                </div>
+              </motion.div>
+            </motion.div>
           </div>
 
         </div>
