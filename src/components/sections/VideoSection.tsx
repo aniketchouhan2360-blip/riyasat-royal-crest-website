@@ -31,9 +31,9 @@ export function VideoSection() {
           className="relative max-w-5xl mx-auto aspect-video rounded-sm overflow-hidden shadow-2xl border border-white/10 bg-secondary/10"
         >
           <iframe 
-            src="https://www.youtube.com/embed/fZvL2I2mgWs?controls=1&rel=0&modestbranding=1" 
+            src="https://www.youtube.com/embed/fZvL2I2mgWs?autoplay=1&mute=1&loop=1&playlist=fZvL2I2mgWs&controls=0&rel=0&modestbranding=1&playsinline=1" 
             title="Riyasat Royalcrest Video"
-            className="w-full h-full"
+            className="w-full h-full pointer-events-none"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
             allowFullScreen
           ></iframe>
