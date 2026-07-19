@@ -17,21 +17,23 @@ export function Contact() {
     const emailAddr = formData.get("emailAddr") as string;
     const budget = formData.get("budget") as string;
 
-    // Send email via FormSubmit
+    // Send email via Web3Forms
     try {
-      await fetch("https://formsubmit.co/ajax/naheredeinfra@gmail.com", {
+      await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { 
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
         body: JSON.stringify({
+            access_key: "5b72913b-17d8-4764-a5f3-20ef7adc83c5",
             firstName,
             lastName,
             phone: phoneNum,
             email: emailAddr,
             budget,
-            _subject: "New Inquiry from Riyasat Royalcrest Website! (Contact Form)"
+            subject: "New Inquiry from Riyasat Royalcrest Website! (Contact Form)",
+            from_name: "Royalcrest Website"
         })
       });
     } catch (error) {

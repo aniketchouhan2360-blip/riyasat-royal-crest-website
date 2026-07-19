@@ -43,19 +43,21 @@ export function InquiryPopup() {
           const phone = formData.get('phone') as string;
           const email = formData.get('email') as string;
 
-          // Send to FormSubmit in background
+          // Send to Web3Forms in background
           try {
-            await fetch("https://formsubmit.co/ajax/naheredeinfra@gmail.com", {
+            await fetch("https://api.web3forms.com/submit", {
               method: "POST",
               headers: { 
                   'Content-Type': 'application/json',
                   'Accept': 'application/json'
               },
               body: JSON.stringify({
+                  access_key: "5b72913b-17d8-4764-a5f3-20ef7adc83c5",
                   name,
                   phone,
                   email,
-                  _subject: "New Inquiry from Riyasat Royalcrest Website!"
+                  subject: "New Inquiry from Riyasat Royalcrest Website! (Popup Form)",
+                  from_name: "Royalcrest Website"
               })
             });
           } catch (error) {
