@@ -7,7 +7,7 @@ import { useState, FormEvent } from "react";
 export function Contact() {
   const whatsappNumber = "917742636414";
 
-  const handleWhatsAppSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleWhatsAppSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     const formData = new FormData(e.currentTarget);
@@ -17,8 +17,29 @@ export function Contact() {
     const emailAddr = formData.get("emailAddr") as string;
     const budget = formData.get("budget") as string;
 
+    // Send email via FormSubmit
+    try {
+      await fetch("https://formsubmit.co/ajax/naheredeinfra@gmail.com", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            firstName,
+            lastName,
+            phone: phoneNum,
+            email: emailAddr,
+            budget,
+            _subject: "New Inquiry from Riyasat Royalcrest Website! (Contact Form)"
+        })
+      });
+    } catch (error) {
+      console.error(error);
+    }
+
+    // Redirect to WhatsApp
     const message = `*New Inquiry - Royal Crest*%0A%0A*Name:* ${firstName} ${lastName}%0A*Phone:* ${phoneNum}%0A*Email:* ${emailAddr}%0A*Budget:* ${budget}%0A%0A_I am interested in Royal Crest and would like to receive the brochure and layout plan._`;
-    
     window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
   };
 

@@ -35,18 +35,51 @@ export function InquiryPopup() {
           </p>
         </div>
 
-        <form className="space-y-4 font-sans" action="/api/lead" method="POST" onSubmit={(e) => { e.preventDefault(); alert("Form submitted! We will contact you soon."); setIsOpen(false); }}>
+        <form className="space-y-4 font-sans" onSubmit={async (e) => {
+          e.preventDefault();
+          const form = e.currentTarget;
+          const formData = new FormData(form);
+          const name = formData.get('name') as string;
+          const phone = formData.get('phone') as string;
+          const email = formData.get('email') as string;
+
+          // Send to FormSubmit in background
+          try {
+            await fetch("https://formsubmit.co/ajax/naheredeinfra@gmail.com", {
+              method: "POST",
+              headers: { 
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json'
+              },
+              body: JSON.stringify({
+                  name,
+                  phone,
+                  email,
+                  _subject: "New Inquiry from Riyasat Royalcrest Website!"
+              })
+            });
+          } catch (error) {
+            console.error(error);
+          }
+
+          // Open WhatsApp
+          const whatsappNumber = "917742636414";
+          const message = `*New Inquiry - Royal Crest Popup*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Email:* ${email}%0A%0A_I am interested in Royal Crest._`;
+          window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+          
+          setIsOpen(false);
+        }}>
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-text-dark mb-1">Full Name</label>
-            <input type="text" id="name" required className="w-full px-4 py-2 border border-secondary/30 rounded-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="John Doe" />
+            <input type="text" id="name" name="name" required className="w-full px-4 py-2 border border-secondary/30 rounded-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="John Doe" />
           </div>
           <div>
             <label htmlFor="phone" className="block text-sm font-medium text-text-dark mb-1">Phone Number</label>
-            <input type="tel" id="phone" required className="w-full px-4 py-2 border border-secondary/30 rounded-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="+91 XXXXX XXXXX" />
+            <input type="tel" id="phone" name="phone" required className="w-full px-4 py-2 border border-secondary/30 rounded-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="+91 XXXXX XXXXX" />
           </div>
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-text-dark mb-1">Email Address</label>
-            <input type="email" id="email" required className="w-full px-4 py-2 border border-secondary/30 rounded-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="john@example.com" />
+            <input type="email" id="email" name="email" required className="w-full px-4 py-2 border border-secondary/30 rounded-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="john@example.com" />
           </div>
           
           <div className="flex items-start gap-2 text-xs text-text-light mt-4">
